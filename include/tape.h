@@ -19,42 +19,41 @@ private:
 
     std::string to_string(const int number) const;
     int to_int(const std::string &str) const;
-    void merge(
-        tape &from1,
-        tape &from2,
-        tape &to1,
-        tape &to2,
-        const int sz,
-        const int k
-    );
 
 public:
-    tape(const std::string &file_path, const int size);
+    tape(
+        const std::string &file_path,
+        const int numbers_length,
+        const int sleep_time
+    );
 
-    tape(const std::string &file_path) : tape(file_path, 0){};
-
-    tape(const int size) : tape("", size){};
+    tape(const std::string &file_path, const int numbers_length)
+        : tape(file_path, numbers_length, 0){};
 
     ~tape() {
         _stream.close();
-        if (_file_path.extension() == ".tmp") {
-            fs::remove(_file_path);
-        }
     };
 
     int size() const {
         return _size;
     };
 
-    void next() override final;
-    void prev() override final;
+    int number_length() const {
+        return _numbers_length - 2;
+    }
+
+    fs::path file_path() const {
+        return _file_path;
+    }
+
+    bool next() override final;
+    bool prev() override final;
     void go_next(const int cnt_step) override final;
     void go_prev(const int cnt_step) override final;
     void go_begin() override final;
     void go_end() override final;
     int read() override final;
     void write(const int number) override final;
-    void sort(tape &out_tape);
 };
 }  // namespace tape
 

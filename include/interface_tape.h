@@ -4,8 +4,8 @@
 namespace tape {
 class ITape {
 public:
-    virtual void next() = 0;
-    virtual void prev() = 0;
+    virtual bool next() = 0;
+    virtual bool prev() = 0;
     virtual void go_next(const int cnt_step) = 0;
     virtual void go_prev(const int cnt_step) = 0;
     virtual void go_begin() = 0;
