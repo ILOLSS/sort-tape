@@ -16,6 +16,7 @@ tape::tape(
 )
     : _sleep_time(sleep_time),
       _numbers_length(numbers_length + 2) {  // + 2 for "\n" and plus or minus
+
     if (file_path.empty() || !fs::exists(file_path)) {
         std::cerr << "Not file" << std::endl;
     }
