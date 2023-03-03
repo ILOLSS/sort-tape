@@ -42,10 +42,6 @@ public:
         return _numbers_length - 2;
     }
 
-    fs::path file_path() const {
-        return _file_path;
-    }
-
     bool next() override final;
     bool prev() override final;
     void go_next(const int cnt_step) override final;

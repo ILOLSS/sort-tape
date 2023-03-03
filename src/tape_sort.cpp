@@ -34,6 +34,7 @@ void tape_sort::merge(
 }
 
 fs::path tape_sort::create_file(const size_t size, const int number_length) {
+    fs::create_directory("tmp");
     char filename_template[] = "tmp/XXXXXX";
     fs::path file_path = mktemp(filename_template);
     file_path += ".tmp";
@@ -102,9 +103,7 @@ void tape_sort::sort(
     // k-merge
     merge(tapes, output_tape);
 
-    // delete tmp files
-    for (auto &tape : tapes) {
-        fs::remove(tape->file_path());
-    }
+    // delete tmp directory
+    fs::remove_all("tmp");
 }
 }  // namespace tape
